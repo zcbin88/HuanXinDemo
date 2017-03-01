@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+    defaultConfig {
+        applicationId "com.zcb.huanxindemo"
+        minSdkVersion 11
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    sourceSets {
+//        main {
+//               // 设置Jni so文件路径 如果有jniLibs目录就不需要设置，好像手动创建的 jniLibs目录无效
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+
+    //use legacy for for android 6.0
+    //useLibrary 'org.apache.http.legacy'
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v4'
+    }
+}
+
+dependencies {
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support'
+//    })
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    testCompile 'junit:junit:4.12'
+    //环信sdk
+    //compile 'com.hyphenate:hyphenate-sdk:3.2.3'
+//    compile files('libs/hyphenatechat_3.2.3.jar')
+    compile project(':easeui')
+}

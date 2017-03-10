@@ -1,6 +1,8 @@
 package com.zcb.huanxindemo.activity;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,12 +28,26 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     private EditText pwdEdt;
     private Button loginBtn;
     private Button registerBtn;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mHandler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1:
+                        Toast.makeText(MainActivity.this,"成功",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 0:
+                        Toast.makeText(MainActivity.this,"失败",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
         findView();
     }
 
@@ -98,7 +114,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                     String pwd=pwdEdt.getText().toString().trim();
                     EMClient.getInstance().createAccount(username,pwd);
                     Log.i("zcb","注册成功");
+                    Message msg=new Message();
+                    msg.what=1;
+                    mHandler.sendMessage(msg);
                 } catch (HyphenateException e) {
+                    Message msg=new Message();
+                    msg.what=0;
+                    mHandler.sendMessage(msg);
                     e.printStackTrace();
                     Log.i("zcb","注册失败");
                 }

@@ -10,6 +10,7 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.EMLog;
 import com.zcb.huanxindemo.db.InviteMessgeDao;
@@ -225,9 +226,10 @@ public class HxEaseuiHelper {
 
 
                     // in background, do not refresh UI, notify it in notification bar
-//                    if(!easeUI.hasForegroundActivies()){
-//                        getNotifier().onNewMsg(message);
-//                    }
+                    //设置本地消息推送通知
+                    if(!easeUI.hasForegroundActivies()){
+                        getNotifier().onNewMsg(message);
+                    }
                 }
             }
 
@@ -258,6 +260,9 @@ public class HxEaseuiHelper {
         };
 
         EMClient.getInstance().chatManager().addMessageListener(messageListener);
+    }
+    public EaseNotifier getNotifier(){
+        return easeUI.getNotifier();
     }
 
 }

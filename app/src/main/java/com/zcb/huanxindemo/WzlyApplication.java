@@ -5,12 +5,15 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.util.EMLog;
+import com.zcb.huanxindemo.activity.MainActivity;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -77,11 +80,14 @@ public class WzlyApplication extends Application {
             @Override
             public void onDisconnected(int error) {
                 EMLog.d("global listener", "onDisconnect" + error);
-                if (error == EMError.USER_REMOVED) {
+                if (error == EMError.USER_REMOVED) {// 显示帐号已经被移除
                     onUserException(Constant.ACCOUNT_REMOVED);
-                } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {// 显示帐号在其他设备登录
                     onUserException(Constant.ACCOUNT_CONFLICT);
-                } else if (error == EMError.SERVER_SERVICE_RESTRICTED) {
+                    EMClient.getInstance().logout(true);//退出登录
+                    Toast.makeText(getApplicationContext(),"退出成功",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else if (error == EMError.SERVER_SERVICE_RESTRICTED) {//
                     onUserException(Constant.ACCOUNT_FORBIDDEN);
                 }
             }
@@ -102,6 +108,7 @@ public class WzlyApplication extends Application {
      */
     protected void onUserException(String exception){
         EMLog.e(TAG, "onUserException: " + exception);
+        Toast.makeText(getApplicationContext(),exception,Toast.LENGTH_LONG).show();
 //        Intent intent = new Intent(getBaseContext(), UserQrCodeActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        intent.putExtra(exception, true);

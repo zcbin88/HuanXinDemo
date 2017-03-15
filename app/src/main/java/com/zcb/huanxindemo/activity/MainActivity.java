@@ -40,10 +40,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 super.handleMessage(msg);
                 switch (msg.what){
                     case 1:
-                        Toast.makeText(MainActivity.this,"成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                         break;
                     case 0:
-                        Toast.makeText(MainActivity.this,"失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"注册失败"+msg.obj.toString(),Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(MainActivity.this,"登录失败"+msg.obj.toString(),Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -78,20 +84,35 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     /**
      * 登录方法
      */
+    String username;
+    String pwd;
     private void login(){
-        String username=usernameEdt.getText().toString().trim();
-        String pwd=pwdEdt.getText().toString().trim();
+        username=usernameEdt.getText().toString().trim();
+        pwd=pwdEdt.getText().toString().trim();
         EMClient.getInstance().login(username, pwd, new EMCallBack() {
             @Override
             public void onSuccess() {
-                startActivity(new Intent(MainActivity.this,ResultActivity.class));
-                finish();
-                Log.i("zcb","登录成功");
+                Message msg=new Message();
+                msg.what=2;
+                mHandler.sendMessage(msg);
+                Intent intent=new Intent(MainActivity.this,ResultActivity.class);
+                intent.putExtra("userName",username);
+                startActivity(intent);
+                Log.i("huanxin","登录成功");
             }
 
             @Override
             public void onError(int i, String s) {
-                Log.i("zcb","登录失败");
+                Message msg=new Message();
+                msg.what=3;
+                msg.obj=s;
+                mHandler.sendMessage(msg);
+                Log.e("huanxin",s);
+                Log.i("huanxin","登录失败");
+//                if (s.equals("User is already login")){
+//                    EMClient.getInstance().logout(true);
+//                    Toast.makeText(MainActivity.this,"正在退出当前环信账号,稍后重新登录",Toast.LENGTH_LONG).show();
+//                }
             }
 
             @Override
@@ -120,8 +141,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 } catch (HyphenateException e) {
                     Message msg=new Message();
                     msg.what=0;
+                    msg.obj=e.toString();
                     mHandler.sendMessage(msg);
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     Log.i("zcb","注册失败");
                 }
             }

@@ -11,6 +11,12 @@
     android:orientation="vertical"
     tools:context="com.zcb.huanxindemo.activity.ResultActivity">
 
+    <TextView
+        android:id="@+id/user_text_view"
+        android:text="当前登录用户"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
     <EditText
@@ -28,6 +34,14 @@
     <Button
         android:text="会话列表"
         android:id="@+id/list_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="推出登录"
+        android:id="@+id/logout_btn"
+        android:layout_marginTop="70dp"
+        android:background="@color/btn_logout_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

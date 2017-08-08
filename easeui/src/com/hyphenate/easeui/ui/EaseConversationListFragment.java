@@ -27,6 +27,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.widget.EaseConversationList;
+import com.hyphenate.easeui.widget.EaseTitleBar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +49,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
     protected FrameLayout errorItemContainer;
 
     protected boolean isConflict;
+
+    protected EaseTitleBar title_bar;
     
     protected EMConversationListener convListener = new EMConversationListener(){
 
@@ -78,6 +81,10 @@ public class EaseConversationListFragment extends EaseBaseFragment{
         // button to clear content in search bar
         clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
         errorItemContainer = (FrameLayout) getView().findViewById(R.id.fl_error_item);
+
+        title_bar= (EaseTitleBar) getView().findViewById(R.id.title_bar);
+        title_bar.setVisibility(View.GONE);
+
     }
     
     @Override

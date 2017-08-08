@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HuanXinDemo</string>
+
+    <string name="dummys_button">Dummy Button</string>
+    <string name="dummys_content">WELCOME\nDEMO</string>
+
 </resources>

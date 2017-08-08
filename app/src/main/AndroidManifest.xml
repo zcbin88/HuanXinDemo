@@ -53,13 +53,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.MyChatActivity" />
         <activity android:name=".activity.MyConversationListActivity" />
         <!-- easeui图片大图activity -->
@@ -68,7 +62,16 @@
         <activity android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity" />
         <!-- easeui文件actibity -->
         <activity android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity" />
-        <activity android:name=".activity.ResultActivity"></activity>
+        <activity
+            android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RegisterActivity"></activity>
     </application>
 
 </manifest>

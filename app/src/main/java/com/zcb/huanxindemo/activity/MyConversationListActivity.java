@@ -3,6 +3,8 @@ package com.zcb.huanxindemo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.hyphenate.EMMessageListener;
@@ -19,15 +21,26 @@ import java.util.List;
  * 消息会话activity
  */
 
-public class MyConversationListActivity extends FragmentActivity {
+public class MyConversationListActivity extends AppCompatActivity {
     private EaseConversationListFragment easeConversationListFragment;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_my_conversation_list);
 
+        init();
+
+         actionBar=getSupportActionBar();
+            if (actionBar!=null)
+            actionBar.setTitle("会话列表");
+    }
+
+
+
+    private void init(){
         easeConversationListFragment=new EaseConversationListFragment();
         easeConversationListFragment.setConversationListItemClickListener(new EaseConversationListFragment.EaseConversationListItemClickListener() {
             @Override

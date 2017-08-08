@@ -15,6 +15,8 @@ public class APPConfig {
     public static final String USER_EASEMOBID="easemobId";
     //用户名
     public static final String USER_NAME="userName";
+    //密码
+    public static final String PASS_WORD="passWord";
     //用户手机号
     public static final String USRE_PHONE="userPhone";
     //用户头像

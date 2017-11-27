@@ -47,22 +47,35 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 判断sdk是否登录成功过，并没有退出和被踢，否则跳转到登陆界面
+        if (!EMClient.getInstance().isLoggedInBefore()) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_main);
 
-        Intent intent=getIntent();
+        findView();
+        initEvent();
 
+        Intent intent=getIntent();
+        if (intent!=null){
+            userName=intent.getStringExtra("userName");
+            userTV.setText("当前登录账号:"+userName);
+        }
+    }
+
+    private void findView(){
         btnStartChat= (Button) findViewById(R.id.startChat);
         btnListChat= (Button) findViewById(R.id.list_chat);
         btnLogout= (Button) findViewById(R.id.logout_btn);
         editText= (EditText) findViewById(R.id.receiver_id);
         userTV= (TextView) findViewById(R.id.user_text_view);
+    }
 
-        if (intent!=null){
-            userName=intent.getStringExtra("userName");
-            userTV.setText("当前登录账号:"+userName);
-        }
-
-
+    private void initEvent(){
         btnStartChat.setOnClickListener(this);
         btnListChat.setOnClickListener(this);
         btnLogout.setOnClickListener(this);

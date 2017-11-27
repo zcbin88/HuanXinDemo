@@ -33,10 +33,10 @@ public class Constant extends EaseConstant {
 	public static final String USER_ID = "userid";
 	public static final String USER_NAME = "username";
 	public static final String SEX = "sex";
-	public static final String OBJECT_HEAD_IMAGE_URL = "objectHeadImageUrl";//接收人的头像
-	public static final String OBJECT_USERID = "objectUserid";
-	public static final String OBJECT_USER_NAME = "objectUserName";
-	public static final String OBJECT_USER_SEX = "objectUserSex";
+	public static final String RECEIVOR_HEAD_IMAGE_URL = "objectHeadImageUrl";//接收人的头像
+	public static final String RECEIVOR_USERID = "objectUserid";
+	public static final String RECEIVOR_USER_NAME = "objectUserName";
+	public static final String RECEIVOR_USER_SEX = "objectUserSex";
 
 
 }

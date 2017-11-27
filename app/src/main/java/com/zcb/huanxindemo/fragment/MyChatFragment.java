@@ -76,8 +76,16 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
         }
         //设置要发送扩展消息用户昵称
         message.setAttribute(Constant.USER_NAME, (String) SharedPreferencesUtils.getParam(getActivity().getApplicationContext(), APPConfig.USER_NAME,"nike"));
+        message.setAttribute(Constant.USER_ID, (String) SharedPreferencesUtils.getParam(getActivity().getApplicationContext(), APPConfig.USER_NAME,"nike"));
         //设置要发送扩展消息用户头像
         message.setAttribute(Constant.HEAD_IMAGE_URL, (String)SharedPreferencesUtils.getParam(getActivity().getApplicationContext(),APPConfig.USER_HEAD_IMG,""));
+        message.setAttribute(Constant.SEX,"1");
+        message.setAttribute(Constant.RECEIVOR_HEAD_IMAGE_URL,"http://www.qqzhi.com/uploadpic/2014-09-14/070503273.jpg");
+        message.setAttribute(Constant.RECEIVOR_USER_NAME,"honey");
+        message.setAttribute(Constant.RECEIVOR_USER_SEX,"2");
+        message.setAttribute(Constant.RECEIVOR_USERID,"150");
+
+
 
     }
 
@@ -95,15 +103,12 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
 
     @Override
     public void onAvatarClick(String username) {
-        //handling when user click avatar
-//        Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-//        intent.putExtra("username", username);
-//        startActivity(intent);
+        //头像点击事件
     }
 
     @Override
     public void onAvatarLongClick(String username) {
-        inputAtUsername(username);
+        //头像长按事件
     }
 
     @Override
@@ -111,49 +116,9 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
         return false;
     }
 
-//    @Override
-//    public void onMessageReceived(List<EMMessage> messages) {
-//        //处理接收到的消息
-//        for (EMMessage message : messages){
-//            //接收并处理扩展消息
-//            String userName=message.getStringAttribute(Constant.USER_NAME,"");
-//            String userId=message.getStringAttribute(Constant.USER_ID,"");
-//            String userPic=message.getStringAttribute(Constant.HEAD_IMAGE_URL,"");
-//            String hxIdFrom=message.getFrom();
-//            System.out.println("接收到的用户名："+userName+"接收到的id："+userId+"头像："+userPic);
-//            EaseUser easeUser=new EaseUser(hxIdFrom);
-//            easeUser.setAvatar(userPic);
-//            easeUser.setNick(userName);
-//
-//            //存入内存
-//
-//        }
-//        super.onMessageReceived(messages);
-//    }
-
-//    @Override
-//    public void onCmdMessageReceived(List<EMMessage> messages) {
-//        //red packet code : 处理红包回执透传消息
-////        for (EMMessage message : messages) {
-////            EMCmdMessageBody cmdMsgBody = (EMCmdMessageBody) message.getBody();
-////            String action = cmdMsgBody.action();//获取自定义action
-////            if (action.equals(RPConstant.REFRESH_GROUP_RED_PACKET_ACTION)){
-////                RedPacketUtil.receiveRedPacketAckMessage(message);
-////                messageList.refresh();
-////            }
-////        }
-//        //end of red packet code
-//
-//
-//        super.onCmdMessageReceived(messages);
-//    }
 
     @Override
     public void onMessageBubbleLongClick(EMMessage message) {
-        // no message forward when in chat room
-//        startActivityForResult((new Intent(getActivity(), ContextMenuActivity.class)).putExtra("message",message)
-//                        .putExtra("ischatroom", chatType == EaseConstant.CHATTYPE_CHATROOM),
-//                REQUEST_CODE_CONTEXT_MENU);
     }
 
     @Override
@@ -174,27 +139,9 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
                 break;
             //red packet code : 进入发红包页面
             case ITEM_RED_PACKET:
-//                if (chatType == Constant.CHATTYPE_SINGLE) {
-//                    //单聊红包修改进入红包的方法，可以在小额随机红包和普通单聊红包之间切换
-//                    RedPacketUtil.startRandomPacket(new RPRedPacketUtil.RPRandomCallback() {
-//                        @Override
-//                        public void onSendPacketSuccess(Intent data) {
-//                            sendMessage(RedPacketUtil.createRPMessage(getActivity(), data, toChatUsername));
-//                        }
-//
-//                        @Override
-//                        public void switchToNormalPacket() {
-//                            RedPacketUtil.startRedPacketActivityForResult(ChatFragment.this, chatType, toChatUsername, REQUEST_CODE_SEND_RED_PACKET);
-//                        }
-//                    },getActivity(),toChatUsername);
-//                } else {
-//                    RedPacketUtil.startRedPacketActivityForResult(this, chatType, toChatUsername, REQUEST_CODE_SEND_RED_PACKET);
-//                }
                 break;
             case ITEM_TRANSFER_PACKET://进入转账页面
-//                RedPacketUtil.startTransferActivityForResult(this, toChatUsername, REQUEST_CODE_SEND_TRANSFER_PACKET);
                 break;
-            //end of red packet code
             default:
                 break;
         }
@@ -241,45 +188,12 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
                     //video call
                     return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO_CALL : MESSAGE_TYPE_SENT_VIDEO_CALL;
                 }
-                //red packet code : 红包消息、红包回执消息以及转账消息的chatrow type
-//                else if (RedPacketUtil.isRandomRedPacket(message)) {
-//                    //小额随机红包
-//                    return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_RANDOM : MESSAGE_TYPE_SEND_RANDOM;
-//                } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_MESSAGE, false)) {
-//                    //发送红包消息
-//                    return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_RED_PACKET : MESSAGE_TYPE_SEND_RED_PACKET;
-//                } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_ACK_MESSAGE, false)) {
-//                    //领取红包消息
-//                    return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_RED_PACKET_ACK : MESSAGE_TYPE_SEND_RED_PACKET_ACK;
-//                } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_TRANSFER_PACKET_MESSAGE, false)) {
-//                    //转账消息
-//                    return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TRANSFER_PACKET : MESSAGE_TYPE_SEND_TRANSFER_PACKET;
-//                }
-                //end of red packet code
             }
             return 0;
         }
 
         @Override
         public EaseChatRow getCustomChatRow(EMMessage message, int position, BaseAdapter adapter) {
-//            if(message.getType() == EMMessage.Type.TXT){
-                // voice call or video call
-//                if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false) ||
-//                        message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)){
-//                    return new ChatRowVoiceCall(getActivity(), message, position, adapter);
-//                }
-                //red packet code : 红包消息、红包回执消息以及转账消息的chat row
-//                else if (RedPacketUtil.isRandomRedPacket(message)) {//小额随机红包
-//                    return new ChatRowRandomPacket(getActivity(), message, position, adapter);
-//                } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_MESSAGE, false)) {//红包消息
-//                    return new ChatRowRedPacket(getActivity(), message, position, adapter);
-//                } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_RED_PACKET_ACK_MESSAGE, false)) {//红包回执消息
-//                    return new ChatRowRedPacketAck(getActivity(), message, position, adapter);
-//                } else if (message.getBooleanAttribute(RPConstant.MESSAGE_ATTR_IS_TRANSFER_PACKET_MESSAGE, false)) {//转账消息
-//                    return new ChatRowTransfer(getActivity(), message, position, adapter);
-//                }
-                //end of red packet code
-//            }
             return null;
         }
 

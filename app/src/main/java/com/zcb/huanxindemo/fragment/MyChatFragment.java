@@ -78,7 +78,8 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
         message.setAttribute(Constant.USER_NAME, (String) SharedPreferencesUtils.getParam(getActivity().getApplicationContext(), APPConfig.USER_NAME,"nike"));
         message.setAttribute(Constant.USER_ID, (String) SharedPreferencesUtils.getParam(getActivity().getApplicationContext(), APPConfig.USER_NAME,"nike"));
         //设置要发送扩展消息用户头像
-        message.setAttribute(Constant.HEAD_IMAGE_URL, (String)SharedPreferencesUtils.getParam(getActivity().getApplicationContext(),APPConfig.USER_HEAD_IMG,""));
+        String headImgUrl=(String)SharedPreferencesUtils.getParam(getActivity().getApplicationContext(),APPConfig.USER_HEAD_IMG,"http://www.qqzhi.com/uploadpic/2014-09-14/070503273.jpg");
+        message.setAttribute(Constant.HEAD_IMAGE_URL, headImgUrl);
         message.setAttribute(Constant.SEX,"1");
         message.setAttribute(Constant.RECEIVOR_HEAD_IMAGE_URL,"http://www.qqzhi.com/uploadpic/2014-09-14/070503273.jpg");
         message.setAttribute(Constant.RECEIVOR_USER_NAME,"honey");

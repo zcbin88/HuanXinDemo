@@ -108,7 +108,6 @@ public class WzlyApplication extends Application {
      */
     protected void onUserException(String exception){
         EMLog.e(TAG, "onUserException: " + exception);
-        Toast.makeText(getApplicationContext(),exception,Toast.LENGTH_LONG).show();
 //        Intent intent = new Intent(getBaseContext(), UserQrCodeActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        intent.putExtra(exception, true);

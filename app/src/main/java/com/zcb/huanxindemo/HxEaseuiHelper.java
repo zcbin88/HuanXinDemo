@@ -125,7 +125,7 @@ public class HxEaseuiHelper {
             user = new EaseUser(username);
             EaseCommonUtils.setUserInitialLetter(user);
         }else {
-            if (TextUtils.isEmpty(user.getAvatar())){//如果名字为空，则显示环信号码
+            if (TextUtils.isEmpty(user.getNick())){//如果名字为空，则显示环信号码
                 user.setNick(user.getUsername());
             }
         }

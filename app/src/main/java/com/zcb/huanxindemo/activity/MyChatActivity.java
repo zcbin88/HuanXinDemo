@@ -31,9 +31,6 @@ public class MyChatActivity extends FragmentActivity {
 
         Intent intent=getIntent();
         Bundle bundle=intent.getBundleExtra("conversation");
-//        bundle.getString(EaseConstant.EXTRA_USER_ID);
-//        chatFragment=new EaseChatFragment();
-//        chatFragment.setArguments(bundle);
         myChatFragment=new MyChatFragment();
         myChatFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()

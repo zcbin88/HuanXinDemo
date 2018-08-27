@@ -28,12 +28,15 @@
         android:theme="@style/AppTheme">
 
         <!-- 设置环信应用的AppKey -->
-        <!--<meta-data-->
-            <!--android:name="EASEMOB_APPKEY"-->
-            <!--android:value="1124161228178748#wzly" />-->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="7799520#mlts-test" />
+            android:value="1124161228178748#wzly" />
+        <!--<meta-data-->
+            <!--android:name="EASEMOB_APPKEY"-->
+            <!--android:value="7799520#mlts-test" />-->
+        <!--<meta-data-->
+            <!--android:name="EASEMOB_APPKEY"-->
+            <!--android:value="7799520#mlts" />-->
         <!-- 声明SDK所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"

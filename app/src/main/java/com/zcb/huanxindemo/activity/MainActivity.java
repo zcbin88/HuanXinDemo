@@ -34,15 +34,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     private TextView userTV;
     private String userName;
     private String[] avatar={"http://img5.duitang.com/uploads/item/201507/21/20150721172011_mGYkh.thumb.224_0.jpeg",
-            "http://www.qqxoo.com/uploads/allimg/160208/19291Q227-3.jpg",
-            "http://www.feizl.com/upload2007/2014_02/1402261732574111.jpg",
+            "https://img2.woyaogexing.com/2018/08/27/f9c5843ef576467390b4de7241ef5df4!400x400.jpeg",
+            "https://www.feizl.com/upload2007/allimg/180821/1934564642-3.jpg",
             "http://img6.itiexue.net/1314/13143390.jpg",
             "http://img5q.duitang.com/uploads/item/201505/26/20150526033548_NjZxS.thumb.224_0.jpeg",
-            "http://www.qqxoo.com/uploads/allimg/170314/1423145B3-6.jpg",
+            "https://img2.woyaogexing.com/2018/08/26/4e10d2d5ea0d45ffb4afe463a96b22e0!400x400.jpeg",
             "http://diy.qqjay.com/u2/2012/1015/ce912cbb8f78ab9f77846dac2797903b.jpg",
-            "http://www.qqxoo.com/uploads/allimg/170314/1423145501-4.jpg",
+            "https://img2.woyaogexing.com/2018/08/25/03fab6cb97cc42ab93b53d0ec6d4a967!400x400.jpeg",
             "http://diy.qqjay.com/u2/2014/1208/ac9aa749faa68eecd84ed14b2da0f9e3.jpg",
             "http://tupian.qqjay.com/tou2/2017/0120/39b35eed7d7000fc214d3f5198032f11.jpg"};
+
+    /**
+     * 头像都是百度来的
+     * ========>>>>>>>>>>>>>>>>>>>>>>
+     * 如果头像显示异常的话，请检查下头像链接是否有效
+     *
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

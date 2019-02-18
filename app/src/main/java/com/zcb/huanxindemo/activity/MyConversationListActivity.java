@@ -2,10 +2,8 @@ package com.zcb.huanxindemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
@@ -23,19 +21,19 @@ import java.util.List;
 
 public class MyConversationListActivity extends AppCompatActivity {
     private EaseConversationListFragment easeConversationListFragment;
-    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_my_conversation_list);
+        ActionBar mActionBar=getSupportActionBar();
+        mActionBar.setHomeButtonEnabled(true);
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setTitle("会话列表");
 
         init();
 
-         actionBar=getSupportActionBar();
-            if (actionBar!=null)
-            actionBar.setTitle("会话列表");
     }
 
 
@@ -59,6 +57,13 @@ public class MyConversationListActivity extends AppCompatActivity {
                 .add(R.id.my_conversation_list,easeConversationListFragment)
                 .commit();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
+
 
     EMMessageListener messageListener=new EMMessageListener() {
         @Override

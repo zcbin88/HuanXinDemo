@@ -58,7 +58,7 @@ public class MyChatFragment extends EaseChatFragment implements EaseChatFragment
 
     @Override
     protected void setUpView() {
-        setChatFragmentListener(this);
+        setChatFragmentHelper(this);
         if (chatType== Constant.CHATTYPE_SINGLE){
             Map<String,RobotUser> robotMap = HxEaseuiHelper.getInstance().getRobotList();
             if(robotMap!=null && robotMap.containsKey(toChatUsername)){

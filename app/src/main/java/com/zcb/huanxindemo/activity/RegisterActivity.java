@@ -32,6 +32,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+        ActionBar mActionBar=getSupportActionBar();
+        mActionBar.setHomeButtonEnabled(true);
+        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setTitle("注册");
+
         mHandler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -76,6 +83,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 register();
                 break;
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 
 

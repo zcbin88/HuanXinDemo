@@ -9,7 +9,7 @@ import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.HanziToPinyin;
 import com.zcb.huanxindemo.Constant;
-import com.zcb.huanxindemo.WzlyApplication;
+import com.zcb.huanxindemo.DemoApplication;
 import com.zcb.huanxindemo.domain.InviteMessage;
 import com.zcb.huanxindemo.domain.RobotUser;
 
@@ -24,7 +24,7 @@ public class DemoDBManager {
     private DbOpenHelper dbHelper;
     
     private DemoDBManager(){
-        dbHelper = DbOpenHelper.getInstance(WzlyApplication.getInstance().getApplicationContext());
+        dbHelper = DbOpenHelper.getInstance(DemoApplication.getInstance().getApplicationContext());
     }
     
     public static synchronized DemoDBManager getInstance(){

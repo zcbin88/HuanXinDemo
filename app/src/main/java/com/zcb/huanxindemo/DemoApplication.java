@@ -4,13 +4,11 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
 import com.hyphenate.util.EMLog;
 import com.zcb.huanxindemo.activity.MainActivity;
 
@@ -23,8 +21,8 @@ import static com.hyphenate.chat.EMGCMListenerService.TAG;
  * Created by Administrator on 2017/1/3.
  */
 
-public class WzlyApplication extends Application {
-    private static WzlyApplication instance;
+public class DemoApplication extends Application {
+    private static DemoApplication instance;
 
     @Override
     public void onCreate() {
@@ -35,12 +33,11 @@ public class WzlyApplication extends Application {
         //初始化LeakCanary内存泄漏检测
 //        refWatcher= LeakCanary.install(this);
     }
-    public static WzlyApplication getInstance() {
+    public static DemoApplication getInstance() {
         return instance;
     }
 
     private void initHuanXin(){
-
         HxEaseuiHelper.getInstance().init(this.getApplicationContext());
         //设置全局监听
         setGlobalListeners();
@@ -73,8 +70,6 @@ public class WzlyApplication extends Application {
      * 设置一个全局的监听
      */
     protected void setGlobalListeners(){
-
-
         // create the global connection listener
         connectionListener = new EMConnectionListener() {
             @Override
@@ -95,7 +90,6 @@ public class WzlyApplication extends Application {
             @Override
             public void onConnected() {
                 // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
-
             }
         };
 
